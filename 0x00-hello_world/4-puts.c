@@ -1,4 +1,3 @@
-#1/bin/bash
 #include <stdio.h>
 
 /**
