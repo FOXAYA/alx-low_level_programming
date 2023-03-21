@@ -1,19 +1,17 @@
 #include "main.h"
-
 /**
- * print_alphabet - check the code
+ * print_alphabet - function to print abc
  *
- * Return: Always 0;
- *
+ * Return: Always 0
  */
 void print_alphabet(void)
 {
-	int i ;
-	
+	char c;
 
-	for(i = 97; i <= 122; i++)
+	for (c = 'a'; c <= 'z'; c++)
 	{
-		_putchar(i);
-	}		
-		_putchar('\n');
+		_putchar(c);
+	}
+_putchar('\n');
+
 }
