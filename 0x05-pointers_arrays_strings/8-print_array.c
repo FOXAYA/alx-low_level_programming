@@ -1,25 +1,20 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
- * puts_half - this function print only the even numbers.
- * @str: is the principal parameter.
+ * print_array - check the code for Holberton School students.
+ * @a: is the array.
+ * @n: is the size.
  */
-void puts_half(char *str)
+void print_array(int *a, int n)
 {
-	int i, len, m;
+	int i;
 
-	for (len = 0; str[len] != '\0'; len++)
+	for (i = 0; i < n; i++)
 	{
-	}
+		printf("%d", a[i]);
 
-	if ((len  % 2) == 0)
-		m = (len / 2);
-	else
-		m = (len + 1) / 2;
-
-	for (i = m; i < len; i++)
-	{
-		_putchar(str[i]);
+		if (i < n - 1)
+			printf(", ");
 	}
-	_putchar('\n');
+	printf("\n");
 }
