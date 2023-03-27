@@ -1,25 +1,25 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * print_array - function that prints n elements of an array of integers,
- * followed by a new line.
- * @a: This is the input array
- * @n: This is the lenght of the array
- *
- *
+ * puts_half - this function print only the even numbers.
+ * @str: is the principal parameter.
  */
-
-void print_array(int *a, int n)
+void puts_half(char *str)
 {
-	int index;
-	
-	for (index = 0; index < n; index++)
+	int i, len, m;
+
+	for (len = 0; str[len] != '\0'; len++)
 	{
-		printf("%d", a[index]);
-		if (index != (n - 1))
-		{
-			printf(", ");
-		}
 	}
-	putchar('\n');
+
+	if ((len  % 2) == 0)
+		m = (len / 2);
+	else
+		m = (len + 1) / 2;
+
+	for (i = m; i < len; i++)
+	{
+		_putchar(str[i]);
+	}
+	_putchar('\n');
 }
