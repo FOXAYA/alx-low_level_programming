@@ -4,8 +4,8 @@
 #include <ctype.h>
 #include <string.h>
 
-char *_strpbrk(char *s, char *accept)
+int _isupper(int c)
 {
-    return strpbrk(s, accept);
+    return (c >= 'A' && c <= 'Z');
 }
 
