@@ -1,55 +1,67 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <stdbool.h>
+#include <string.h>
 
 /**
- * coinConverter - Helper function that does all the mathematics
- * @i: Passed in variable from main for calculations
- * Return: The number of coins needed minimum for the passed in variable
+ * coin_calc - Helper function that calculates and prints the minimum number of
+ * coins to make change for an amount of money
+ * @cents: - Int for number of cents
+ * Return: Int for minimum number of coins
  */
-int coinConverter(int i)
+
+int coin_calc(int cents)
 {
-	int count = 0;
 
-	while (i != 0)
+	int coins[5] = {25, 10, 5, 2, 1};
+	int coin_type[5] = {0, 0, 0, 0, 0};
+
+	int i, j = 0, s = 0;
+
+	for (i = 0; i < 5; i++)
 	{
-		if (i % 10 == 9 || i % 10 == 7)
-			i -= 2;
-		else if (i % 25 == 0)
-			i -= 25;
-		else if (i % 10 == 0)
-			i -= 10;
-		else if (i % 5 == 0)
-			i -= 5;
-		else if (i % 2 == 0)
-		{
-			if (i % 10 == 6)
-				i -= 1;
-			else
-				i -= 2;
-		}
-		else
-			i -= 1;
+		j = 0;
 
-		count++;
+		while (cents > 0)
+		{
+			cents -= coins[i];
+
+			if (cents < 0)
+			{
+				cents += coins[i];
+				break;
+			}
+
+			++j;
+			coin_type[i] = j;
+		}
+
+		if (cents < 0)
+		{
+			cents += coins[i];
+			break;
+		}
+
 	}
 
-	return (count);
+	for (i = 0; i < 5; i++)
+		s += coin_type[i];
+
+	return (s);
 }
 
 /**
- * main - Takes in exactly one argument for minimum coin count
- * @argc: Number of command line arguments
- * @argv: Array name
- * Return: 0 if exactly 1 argument is passed into this program, 1 otherwise
+ * main - Program that prints the minimum number of coins to make
+ * change for an amount of money
+ * @argc: - Int of arguments passed into program including command
+ * @argv: - Array of pointers to the strings of arguments passed
+ * Return: 0
  */
-int main(int argc, char *argv[])
-{
-	int i, coin;
 
-	coin = 0;
+int main(int argc, char **argv)
+{
+
+	int cents, sum = 0;
 
 	if (argc != 2)
 	{
@@ -57,15 +69,15 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	i = atoi(argv[1]);
+	cents = atoi(*(argv + 1));
 
-	if (i < 0)
-		printf("0\n");
+	if (cents < 0)
+		printf("%d\n", sum);
+
 	else
 	{
-		coin = coinConverter(i);
-
-		printf("%d\n", coin);
+		sum = coin_calc(cents);
+		printf("%d\n", sum);
 	}
 
 	return (0);
